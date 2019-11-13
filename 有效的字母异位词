@@ -1,5 +1,16 @@
 给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词
 
+//用数组排序进行比较
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        char[] sarr = s.toCharArray();
+        char[] tarr = t.toCharArray();
+        Arrays.sort(sarr);
+        Arrays.sort(tarr);
+        return Arrays.equals(sarr, tarr);
+    }
+}
+
 //创建ArrayList查找删除
 public boolean isAnagram(String s, String t) {
     if (s.length() != t.length()) return false;
