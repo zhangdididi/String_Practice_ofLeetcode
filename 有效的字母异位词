@@ -1,6 +1,6 @@
 给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词
 
-
+//创建ArrayList查找删除
 public boolean isAnagram(String s, String t) {
     if (s.length() != t.length()) return false;
     List<Character> list = new ArrayList<>();
@@ -14,6 +14,23 @@ public boolean isAnagram(String s, String t) {
         } else {
             int index = list.indexOf(c);
             list.remove(index);
+        }
+    }
+    return true;
+}
+
+
+//创建一个26个字母的哈希表
+public boolean isAnagram(String s, String t) {
+    if (s.length() != t.length()) return false;
+    int[] hashtable = new int[26];
+    for (int i = 0; i < s.length(); i++) {
+        hashtable[s.charAt(i) - 'a']++;
+    } 
+    for (int i = 0; i < t.length(); i++) {
+        hashtable[t.charAt(i) - 'a']--;
+        if (hashtable[t.charAt(i) - 'a'] < 0) {
+            return false;
         }
     }
     return true;
