@@ -64,12 +64,13 @@ class Solution {
         map.put('L', 50);
         map.put('C', 100);
         map.put('D', 500);
-        map.put('M', 1000);
+        map.put('M', 1000); i
+        //避免 index + 1 越界访问，index 不能指向字符串末尾
         for (int index = 0; index < s.length() - 1; index++) {
             res += map.get(s.charAt(index)) < map.get(s.charAt(index + 1)) ? 
                     -map.get(s.charAt(index)) : map.get(s.charAt(index));
         }
-
+        //字符串末尾不会出现减的情况，直接加上该罗马数字表示的整数值
         return res + map.get(s.charAt(s.length() - 1));
     }
 }
