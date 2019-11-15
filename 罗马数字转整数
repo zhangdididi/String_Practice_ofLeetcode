@@ -1,0 +1,30 @@
+class Solution {
+    public int romanToInt(String s) {
+         int res = 0;
+         for (int index = 0; index < s.length(); index++) {
+            if (index != s.length() - 1 && s.charAt(index) == 'I' 
+                    && (s.charAt(index + 1) == 'V' || s.charAt(index + 1) == 'X')) {
+                --res;
+            } else if (s.charAt(index) == 'I') {
+                ++res;
+            }
+            if (s.charAt(index) == 'V') res += 5;
+            if (index != s.length() - 1 && s.charAt(index) == 'X' 
+                    && (s.charAt(index + 1) == 'L' || s.charAt(index + 1) == 'C')) {
+                res -= 10;
+            } else if (s.charAt(index) == 'X') {
+                res += 10;
+            } 
+            if (s.charAt(index) == 'L') res += 50;
+            if (index != s.length() - 1 && s.charAt(index) == 'C' 
+                    && (s.charAt(index + 1) == 'D' || s.charAt(index + 1) == 'M')) {
+                res -= 100;
+            } else if (s.charAt(index) == 'C') {
+                res += 100;
+            } 
+            if (s.charAt(index) == 'D') res += 500;
+            if (s.charAt(index) == 'M') res += 1000;
+        }//end while
+        return res;
+    }
+}
