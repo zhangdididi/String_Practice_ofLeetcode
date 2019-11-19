@@ -9,10 +9,8 @@ public String longestCommonPrefix(String[] strs) {
     int charIndex = 0;
     StringBuilder stringBuilder = new StringBuilder(strs[0]);
     while (strsIndex < strs.length) {
-        if (strs[strsIndex] == " ") {
-            return "";
-        }
-        while (charIndex < stringBuilder.length() && charIndex < strs[strsIndex].length() && stringBuilder.charAt(charIndex) == strs[strsIndex].charAt(charIndex)) {
+        while (charIndex < stringBuilder.length() && charIndex < strs[strsIndex].length() 
+                && stringBuilder.charAt(charIndex) == strs[strsIndex].charAt(charIndex)) {
             charIndex++;
         }
         stringBuilder.delete(0, stringBuilder.length());
