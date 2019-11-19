@@ -1,0 +1,25 @@
+    public String longestCommonPrefix(String[] strs) {
+            if (strs.length == 0) {
+                return "";
+            }
+        //用strsIndex遍历数组
+        //用charIndex遍历各个字符串
+        //先创建一个StringBuilder来保存公共前缀
+        int strsIndex = 1;
+        int charIndex = 0;
+        StringBuilder stringBuilder = new StringBuilder(strs[0]);
+        while (strsIndex < strs.length) {
+            if (strs[strsIndex] == " ") {
+                return "";
+            }
+            while (charIndex < stringBuilder.length() && charIndex < strs[strsIndex].length() && stringBuilder.charAt(charIndex) == strs[strsIndex].charAt(charIndex)) {
+                charIndex++;
+            }
+            stringBuilder.delete(0, stringBuilder.length());
+            stringBuilder.append(strs[strsIndex].substring(0, charIndex));
+            strsIndex++;
+            charIndex = 0;
+
+        }
+        return stringBuilder.toString();
+    }
