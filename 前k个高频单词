@@ -1,0 +1,31 @@
+class Solution {
+    public List<String> topKFrequent(String[] words, int k) {
+        //先统计每个单词出现次数
+        Map<String, Integer> map = new HashMap<>();
+        for (String s : words) {
+            int count = map.getOrDefault(s, 0);
+            map.put(s, count + 1);
+        }
+        //根据次数多少进行降序(自定制比较规则)
+        List<String> res = new ArrayList<>(map.keySet());
+        Collections.sort(res, new MyComp(map));//加一个比较器对象
+        return res.subList(0, k);
+    }
+
+    class MyComp implements Comparator<String> {
+        private Map<String, Integer> map = null;
+
+        public MyComp(Map<String, Integer> map) {
+            this.map = map;
+        }
+
+        public int compare(String o1, String o2) {
+            int count1 = map.get(o1);
+            int count2 = map.get(o2);
+            if (count1 == count2) {
+                return o1.compareTo(o2);
+            }
+            return count2 - count1;
+        }
+    }
+}
