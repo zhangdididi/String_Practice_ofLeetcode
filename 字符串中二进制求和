@@ -1,0 +1,25 @@
+class Solution {
+    public String addBinary(String a, String b) {
+        StringBuilder res = new StringBuilder();
+        int nextNum = 0;
+        for (int i = a.length() - 1, j = b.length() - 1; i >= 0 || j >= 0; i--, j--) {
+            int sum = nextNum;
+            if (i >= 0) {
+                sum += (a.charAt(i) - '0');
+            } else {
+                sum += 0;
+            }
+            if (j >= 0) {
+                sum += (b.charAt(j) - '0');
+            } else {
+                sum += 0;
+            }
+            res.append(sum % 2);
+            nextNum = sum / 2;
+        }
+        if (nextNum == 1) {
+            res.append(nextNum);
+        }
+        return res.reverse().toString();
+    }
+}
