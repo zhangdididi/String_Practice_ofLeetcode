@@ -1,0 +1,79 @@
+class Solution {
+    public String[] findWords(String[] words) {
+        //创建三行键盘的字符串
+        String str1 = "qwertyuiopQWERTYUIOP";
+        String str2 = "asdfghjklASDFGHJKL";
+        String str3 = "zxcvbnmZXCVBNM";
+        //再将字符串转为三个键盘字符数组
+        char[] char1 = str1.toCharArray();
+        char[] char2 = str2.toCharArray();
+        char[] char3 = str3.toCharArray();
+        //创建三个Set中,保存三行键盘存在的字母
+        Set<Character> table1 = new HashSet<>();
+        Set<Character> table2 = new HashSet<>();
+        Set<Character> table3 = new HashSet<>();
+        for (char c : char1) {
+            table1.add(c);
+        }
+        for (char c : char2) {
+            table2.add(c);
+        }
+        for (char c : char3) {
+            table3.add(c);
+        }
+        //用ArrayLilst来存取符合条件的字符串
+        List<String> list = new ArrayList<>();
+        //遍历数组中的每个字符串
+        for (int wordsIndex = 0; wordsIndex < words.length; wordsIndex++) {
+            int charIndex = 1;//遍历字符串每个字符的元素下标
+            if (table1.contains(words[wordsIndex].charAt(0))) {
+                //如果字符串的第一个字符存在于第一行键盘中,其他else if同理
+                //就在第一行键盘的Set中查找
+                while (charIndex < words[wordsIndex].length()) {
+                    //取到字符串的每个字符
+                    char c = words[wordsIndex].charAt(charIndex);
+                    //如果和第一个字符来源的键盘行不同
+                    //说明这个字符串的字符不存在同一键盘行内
+                    if (!table1.contains(c)) {
+                        break;
+                    }
+                    charIndex++;
+                }
+                //如果charIndex遍历完了这个字符串
+                //说明符合条件,就插入该字符串
+                if (charIndex == words[wordsIndex].length()) {
+                    list.add(words[wordsIndex]);
+                }
+            } else if (table2.contains(words[wordsIndex].charAt(0))) {
+                 while (charIndex < words[wordsIndex].length()) {
+                    char c = words[wordsIndex].charAt(charIndex);
+                    if (!table2.contains(c)) {
+                        break;
+                    }
+                    charIndex++;
+                }
+                if (charIndex == words[wordsIndex].length()) {
+                    list.add(words[wordsIndex]);
+                }           
+            
+            } else if (table3.contains(words[wordsIndex].charAt(0))) {
+                 while (charIndex < words[wordsIndex].length()) {
+                    char c = words[wordsIndex].charAt(charIndex);
+                    if (!table3.contains(c)) {
+                        break;
+                    }
+                    charIndex++;
+                }
+                if (charIndex == words[wordsIndex].length()) {
+                    list.add(words[wordsIndex]);
+                }               
+            }
+        }// end for
+        String[] ret = new String[list.size()];
+        //循环将list中符合条件的字符串拷贝到返回的数组中
+        for (int i = 0; i < list.size(); i++) {
+            ret[i] = list.get(i);
+        }
+        return ret;
+    }
+}
