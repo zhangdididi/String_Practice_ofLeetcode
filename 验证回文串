@@ -1,0 +1,28 @@
+class Solution {
+    public boolean isPalindrome(String s) {
+        Set<Character> table = new HashSet<>();
+        String str = "abcdefghijklmnopqrstuvwxyz123456789";
+        char[] chars = str.toCharArray();
+        for (char c : chars) {
+            table.add(c);
+        }
+
+        String temp = s.toLowerCase();
+        int left = 0;
+        int right = temp.length() - 1;
+        while (left < right) {
+            if (table.contains(temp.charAt(left)) && table.contains(temp.charAt(right))) {
+                if (temp.charAt(left) != temp.charAt(right)) {
+                    return false;
+                }
+                left++;
+                right--;
+            } else if (!table.contains(temp.charAt(left))) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return true;
+    }
+}
