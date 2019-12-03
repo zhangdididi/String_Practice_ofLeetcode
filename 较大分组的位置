@@ -1,0 +1,27 @@
+class Solution {
+    public List<List<Integer>> largeGroupPositions(String S) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (S.length() == 0) {
+            return res;
+        }
+        int left = 0;
+        int right = 0;
+        int count = 0;
+        while (right < S.length()) {
+            while (right < S.length() && S.charAt(left) == S.charAt(right)) {
+                count++;
+                right++;
+            } 
+            //循环结束,right指向连续相同字符串最后一个字符后面
+            if (count >= 3) {
+                List<Integer> elem = new ArrayList<>();
+                elem.add(left);
+                elem.add(right - 1);
+                res.add(elem);
+            }
+            left = right;
+            count = 0;
+        }
+        return res;
+    }
+}
