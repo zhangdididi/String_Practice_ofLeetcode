@@ -1,6 +1,5 @@
 class Solution {
     public int compress(char[] chars) {
-
         int sum = 0;//记录不同字符的开始位置
         int cur = 0;
         int ret = 0;
