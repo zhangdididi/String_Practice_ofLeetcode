@@ -1,0 +1,22 @@
+class Solution {
+    public boolean detectCapitalUse(String word) {
+        char[] chars = word.toCharArray();
+        if (chars[0] - 'Z' <= 0 && chars[chars.length - 1] - 'Z' <= 0) {
+            //第一个字母是大写,最后一个字母也是大写
+            //那么其余字母都得是大写才满足要求
+            for (int i = 1; i < chars.length; i++) {
+                if (chars[i] - 'Z' > 0) {
+                    return false;
+                }
+            }
+        } else {
+            //第一个字母不是大写,就要求所有字母都是小写
+            for (int i = 1; i < chars.length; i++) {
+                if (chars[i] - 'Z' <= 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
