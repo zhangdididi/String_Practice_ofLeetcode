@@ -1,0 +1,45 @@
+class Solution {
+    public int compress(char[] chars) {
+
+        int sum = 0;//记录不同字符的开始位置
+        int cur = 0;
+        int ret = 0;
+        while (cur < chars.length && sum < chars.length) {
+            int charNum = 1;//记录字符数量
+            for (int i = sum; i < chars.length - 1; i++) {
+                if (chars[i] == chars[i + 1]) {
+                    charNum++;
+                } else {
+                    break;
+                }
+            }
+            //在字符后加value值
+            chars[cur++] = chars[sum];
+            ++ret;
+            sum += charNum;// 1
+            if (charNum != 1) {
+                int index = charNum;
+                if (index > 0) {
+                    if (index / 1000 > 0) {
+                        chars[cur++] = (char) (index / 1000 + 48);
+                        index %= 1000;
+                        ret++;
+                    }
+                    if (charNum / 100 > 0) {
+                        chars[cur++] = (char) (index / 100 + 48);
+                        charNum %= 100;
+                        ret++;
+                    }
+                    if (index / 10 > 0) {
+                        chars[cur++] = (char) (index / 10 + 48);
+                        index %= 10;
+                        ret++;
+                    }
+                    chars[cur++] = (char) (index + 48);
+                        ret++;
+                }
+            }
+        }//end while
+        return ret;
+    }
+}
