@@ -24,6 +24,7 @@ class Solution {
         for (char c : chars) {
             hashTable[c - 'a']++; 
         }
+        //循环结束后,hashTable中存放了字符串text每个字符的数量
         int max = hashTable[s.charAt(0) - 'a'];
         for (int i = 1; i < s.length(); i++) {
             if (s.charAt(i) != 'l' && s.charAt(i) != 'o') {
