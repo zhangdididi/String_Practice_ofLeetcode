@@ -1,0 +1,35 @@
+class Solution {
+    public int[] numSmallerByFrequency(String[] queries, String[] words) {
+        int[] res = new int[queries.length];
+        int[] word = new int[words.length];
+        for (int i = 0; i < word.length; i++) {
+            word[i] = f(words[i]);
+        }
+        Arrays.sort(word);
+        for (int j = 0; j < res.length; j++) {
+            int key = f(queries[j]);
+            for (int k = 0; k < word.length; k++) {
+                if (word[k] > key) {
+                    res[j]++;
+                }
+            }
+        }
+        return res;
+
+    }
+
+    public static int f(String s) {
+        char minChar = s.charAt(0);
+        int count = 1;
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i) == minChar) {
+                count++;
+            }
+            if (s.charAt(i) < minChar) {
+                minChar = s.charAt(i);
+                count = 1;
+            }
+        }
+        return count;
+    }
+}
