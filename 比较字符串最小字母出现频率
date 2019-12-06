@@ -36,6 +36,7 @@ class Solution {
             word[i] = f(words[i]);
         }
         Arrays.sort(word);
+        //遍历queries数组,用每个字符串进行比较,将小于word数组元素的次数填入res数组
         for (int j = 0; j < res.length; j++) {
             int key = f(queries[j]);
             for (int k = 0; k < word.length; k++) {
@@ -48,6 +49,7 @@ class Solution {
 
     }
 
+    //求字符串最小字母出现次数
     public static int f(String s) {
         char minChar = s.charAt(0);
         int count = 1;
