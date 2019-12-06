@@ -11,6 +11,31 @@
 链接：https://leetcode-cn.com/problems/reverse-string-ii
 */
 
+//字符数组
+class Solution {
+    public String reverseStr(String s, int k) {
+        char[] chars = s.toCharArray();
+        for (int cur = 0; cur < chars.length; cur += (2 * k)) {
+            int left = cur;
+            int right = left + k - 1;
+            if (right >= chars.length) {
+                right = chars.length - 1;
+            }
+            while (left < right) {
+                char temp = chars[left];
+                chars[left] = chars[right];
+                chars[right] = temp;
+                ++left;
+                --right;
+            }
+        }
+        return new String(chars);
+    }
+}
+
+
+
+//StringBuilder
 class Solution {
     public String reverseStr(String s, int k) {
         int temp = 0;
