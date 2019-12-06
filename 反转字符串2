@@ -1,0 +1,46 @@
+class Solution {
+    public String reverseStr(String s, int k) {
+        if (s.length() < 1) {
+            return "";
+        }
+        if (k == 0) {
+            return s;
+        }
+        int temp = 0;
+        StringBuilder str = new StringBuilder(s);
+        if (str.length() < 2 * k) {
+        //第一种情况,k<=字符数量<2*k ，反转前k个字符
+            int left = 0;
+            int right = k - 1;
+            if (str.length() < k) {
+                right = str.length() - 1;
+            }
+            while (left < right) {
+                //此时进行前k个字符的反转,也就是交换left位置和right
+                char c = str.charAt(left);
+                str.setCharAt(left, str.charAt(right));
+                str.setCharAt(right, c);
+                ++left;
+                --right;
+            }// end while
+        } else {
+        //第二种情况,字符数量>=2*k
+            for (int i = 0; i <= str.length() / (2 * k); i++) {
+                int left = temp;
+                int right = left + k - 1;
+                if (right >= str.length()) {
+                    right = str.length() - 1;
+                }
+                while (left < right) {
+                    char c = str.charAt(left);
+                    str.setCharAt(left, str.charAt(right));
+                    str.setCharAt(right, c);
+                    ++left;
+                    --right;
+                }//end while
+                temp += (2 * k);
+            }//end for
+        } 
+        return str.toString();
+    }
+}
