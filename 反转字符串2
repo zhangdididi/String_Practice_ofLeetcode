@@ -13,12 +13,6 @@
 
 class Solution {
     public String reverseStr(String s, int k) {
-        if (s.length() < 1) {
-            return "";
-        }
-        if (k == 0) {
-            return s;
-        }
         int temp = 0;
         StringBuilder str = new StringBuilder(s);
         if (str.length() < 2 * k) {
