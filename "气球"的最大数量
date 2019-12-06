@@ -1,0 +1,22 @@
+class Solution {
+    public int maxNumberOfBalloons(String text) {
+        String s = "balloon";
+        if (text.length() < 7) {
+            return 0;
+        }
+        char[] chars = text.toCharArray();
+        int[] hashTable = new int[26];
+        for (char c : chars) {
+            hashTable[c - 'a']++; 
+        }
+        int max = hashTable[s.charAt(0) - 'a'];
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i) != 'l' && s.charAt(i) != 'o') {
+                max = hashTable[s.charAt(i) - 'a'] < max ? hashTable[s.charAt(i) - 'a'] : max;
+            } else {
+                max = hashTable[s.charAt(i) - 'a'] / 2 < max ? hashTable[s.charAt(i) - 'a'] / 2 : max;
+            }
+        }
+        return max;
+    }
+}
