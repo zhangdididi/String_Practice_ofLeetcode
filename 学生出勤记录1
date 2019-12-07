@@ -1,0 +1,31 @@
+class Solution {
+    public boolean checkRecord(String s) {
+        char[] record = s.toCharArray();
+        if (record.length == 0) {
+            return true;
+        }
+        int sumOfA = 0;
+        if (record[record.length - 1] == 'A') {
+            sumOfA++;
+        }
+        int sumDoubleL = 0;
+        for (int i = 0; i < record.length - 1; i++) {
+            if (record[i] == 'A') {
+                sumOfA++;
+                if (sumOfA > 1) {
+                    return false;
+                }
+            }
+            
+            if (record[i] == 'L' && record[i] == record[i + 1]) {
+                sumDoubleL++;
+                if (sumDoubleL > 1) {
+                    return false;
+                }
+            } else {
+                sumDoubleL = 0;
+            }
+        }
+        return true;
+    }
+}
