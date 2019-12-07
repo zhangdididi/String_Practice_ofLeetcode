@@ -1,0 +1,40 @@
+class Solution {
+    public boolean validPalindrome(String s) {
+        if (s.length() < 1) {
+            return true;
+        }
+        //上面的if语句没有执行,说明原字符串不是回文
+        char[] charOfs = s.toCharArray();
+        int left = 0;
+        int right = charOfs.length - 1;
+        while (left < right) {
+            if (charOfs[left] != charOfs[right]) {
+                //不相等的话,就分别求去掉左边或者右边是否为回文
+                StringBuilder temp1 = new StringBuilder(s);
+                temp1.deleteCharAt(left);
+                if (isPalindrome1(temp1)) {
+                    return true;
+                }
+                StringBuilder temp2 = new StringBuilder(s);
+                temp2.deleteCharAt(right);
+                if (isPalindrome1(temp2)) {
+                    return true;
+                }
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    public static boolean isPalindrome1(StringBuilder str) {
+        String temp1 = String.valueOf(str);
+        str.reverse();
+        String temp2 = String.valueOf(str);
+        if (temp1.equals(temp2)) {
+            return true;
+        }
+        return false;
+    }
+}
