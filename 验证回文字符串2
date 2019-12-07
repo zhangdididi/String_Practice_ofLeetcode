@@ -17,6 +17,41 @@
 链接：https://leetcode-cn.com/problems/valid-palindrome-ii
 */
 
+class Solution {
+    public boolean validPalindrome(String s) {
+        if (s.length() < 1) {
+            return true;
+        }
+        //上面的if语句没有执行,说明原字符串不是回文
+        char[] charOfs = s.toCharArray();
+        int left = 0;
+        int right = charOfs.length - 1;
+        while (left < right && charOfs[left] == charOfs[right]) {
+            left++;
+            right--;
+        }
+        if (isPalindrome(charOfs, left + 1, right)) {
+            return true;
+        }
+        if (isPalindrome(charOfs, left, right - 1)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isPalindrome(char[] chars, int i, int j) {
+        while (i < j) {
+            if (chars[i] != chars[j]) {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+}
+
+
 //使用toCharArray()方法判断回文
 class Solution {
     public boolean validPalindrome(String s) {
