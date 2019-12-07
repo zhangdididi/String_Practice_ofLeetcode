@@ -1,0 +1,21 @@
+class Solution {
+    public String gcdOfStrings(String str1, String str2) {
+        if (!(str1 + str2).equals(str2 + str1)) {
+            return "";
+        }
+        StringBuilder s1 = new StringBuilder(str1);
+        StringBuilder s2 = new StringBuilder(str2);
+        while (true) {
+            int difference = s1.length() - s2.length();
+            if (difference == 0) {
+                //两个字符串长度相同，则直接返回
+                return s1.toString();
+            } else if (difference > 0) {
+                s1.replace(0,s1.length(),s1.substring(s2.length(), s1.length()));
+                
+            } else {
+                s2.replace(0,s2.length(),s2.substring(s1.length(), s2.length()));
+            }
+        }
+    }
+}
