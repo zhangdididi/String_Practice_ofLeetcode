@@ -1,0 +1,28 @@
+class Solution {
+    public int repeatedStringMatch(String A, String B) {
+        char[] charOfA = A.toCharArray();
+        char[] charOfB = B.toCharArray();
+        for (int i = 0; i < charOfA.length; i++) {
+            if (charOfA[i] == charOfB[0]) {
+                int k = i;
+                //记录遍历字符串B的次数
+                int count = 1;
+                int j = 0;//从头遍历字符串B
+                while (charOfA[k] == charOfB[j]) {
+                    k++;
+                    j++;
+                    if (j >= charOfB.length) {
+                        //遍历完B,就返回count
+                        return count;
+                    }
+                    if (k >= charOfA.length) {
+                        //k遍历完字符串A,说明不够匹配B
+                        k = 0;
+                        count++;
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+}
