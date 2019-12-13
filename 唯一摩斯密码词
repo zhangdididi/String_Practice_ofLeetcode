@@ -1,0 +1,16 @@
+class Solution {
+    public int uniqueMorseRepresentations(String[] words) {
+        String[] morse = new String[]{
+            ".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+        //mores数组中存储了1到26的对应密码、
+        Set<String> set = new HashSet<>();
+        for (int i = 0; i < words.length; i++) {
+            StringBuilder temp = new StringBuilder("");
+            for (int j = 0; j < words[i].length(); j++) {
+                temp.append(morse[words[i].charAt(j) - 'a']);
+            }
+            set.add(temp.toString());
+        }
+        return set.size();
+    }
+}
