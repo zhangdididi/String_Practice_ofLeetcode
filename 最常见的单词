@@ -1,0 +1,42 @@
+class Solution {
+    public String mostCommonWord(String paragraph, String[] banned) {
+        Set<Character> setChar = new HashSet<>();
+        char[] chars = new char[]{' ', '!', '?', '\'', ',', ';', '.'};
+        for (char c : chars) {
+            setChar.add(c);
+        }
+        Set<String> setString = new HashSet<>();
+        for (String string : banned) {
+            setString.add(string);
+        }
+        Map<String, Integer> map = new HashMap<>();
+        int left = 0, right = 0;
+        int max = 0;
+        StringBuilder res = new StringBuilder("");
+        char[] p = paragraph.toLowerCase().toCharArray();
+        while (right < p.length) {
+            while (left < p.length && setChar.contains(p[left])) {
+                left++;
+            }
+            //left指向单词的第一个字符
+            while (right < p.length && !setChar.contains(p[right])) {
+                right++;
+            }
+            //right指向单词后的第一个非单词字母
+            String s = paragraph.toLowerCase().substring(left, right);
+            if (!setString.contains(s)) {
+                int count = map.getOrDefault(s, 0);
+                map.put(s, count + 1);
+                if (map.get(s) > max) {
+                    max = map.get(s);
+                    res.replace(0, res.length(), s);
+                }
+            }
+            left = right;
+            while (right < p.length && setChar.contains(p[right])) {
+                right++;
+            }
+        }//end while
+        return res.toString();
+    }
+}
