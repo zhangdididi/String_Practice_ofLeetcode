@@ -1,0 +1,13 @@
+class Solution {
+    public String toLowerCase(String str) {
+        if (str.length() == 0) return "";
+        StringBuilder temp = new StringBuilder(str);
+        for (int i = 0; i < temp.length(); i++) {
+            if (temp.charAt(i) >= 'A' && temp.charAt(i) <= 'Z') {
+                //如果该数字在大写字母的范围内，就转换为小写字母
+                temp.setCharAt(i, (char)(temp.charAt(i) + 32));
+            }
+        }
+        return temp.toString();
+    }
+}
