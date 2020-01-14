@@ -12,9 +12,11 @@ class Solution {
     public int lengthOfLastWord(String s) {
         int end = s.length() - 1;
         while (end >= 0 && s.charAt(end) == ' ') end--;
+        //循环结束end指向最后一个单词的末尾
         if (end < 0) return 0;
         int start = end;
         while (start >= 0 && s.charAt(start) != ' ') start--;
+        //循环结束，start指向最后一个单词开头
         return end - start;
     }
 }
