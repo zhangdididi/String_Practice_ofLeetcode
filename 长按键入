@@ -24,3 +24,23 @@ class Solution {
         return i == name.length();
     }
 }
+
+//字符串转成字符数组
+class Solution {
+    public boolean isLongPressedName(String name, String typed) {
+        int i = 0, j = 0;
+        char[] nameC = name.toCharArray();
+        char[] typedC = typed.toCharArray();
+        while (i < nameC.length && j < typedC.length) {
+            if (nameC[i] == typedC[j]) {
+                i++;
+                j++;
+            } else if (j > 0 && typedC[j] == typedC[j - 1]) {
+                j++;
+            } else {
+                return false;
+            }
+        }
+        return i == nameC.length;
+    }
+}
