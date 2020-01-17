@@ -1,0 +1,20 @@
+class Solution {
+    public String reverseOnlyLetters(String S) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : S.toCharArray()) {
+            if (Character.isLetter(c)) {
+                stack.push(c);
+            }
+        }
+        //将字母全都放进栈内
+        StringBuilder str = new StringBuilder();
+        for (char c : S.toCharArray()) {
+            if (Character.isLetter(c)) {
+                str.append(stack.pop());
+            } else {
+                str.append(c);
+            }
+        }
+        return str.toString();
+    }
+}
