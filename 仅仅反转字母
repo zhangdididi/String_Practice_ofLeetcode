@@ -3,6 +3,7 @@
 其中不是字母的字符都保留在原地，而所有字母的位置发生反转。
 */
 
+//利用栈空间
 class Solution {
     public String reverseOnlyLetters(String S) {
         Stack<Character> stack = new Stack<>();
@@ -19,6 +20,28 @@ class Solution {
             } else {
                 str.append(c);
             }
+        }
+        return str.toString();
+    }
+}
+
+//双指针
+class Solution {
+    public String reverseOnlyLetters(String S) {
+        StringBuilder str = new StringBuilder(S);
+        int left = 0, right = str.length() - 1;
+        while (left < right) {
+            while (left < right && !Character.isLetter(str.charAt(left))) {
+                left++;
+            }
+            while (left < right && !Character.isLetter(str.charAt(right))) {
+                right--;
+            }
+            char temp = str.charAt(left);
+            str.setCharAt(left, str.charAt(right));
+            str.setCharAt(right, temp);
+            left++;
+            right--;
         }
         return str.toString();
     }
