@@ -5,26 +5,23 @@
 
 class Solution {
     public String addBinary(String a, String b) {
-        StringBuilder res = new StringBuilder();
+        StringBuilder str = new StringBuilder();
         int nextNum = 0;
-        for (int i = a.length() - 1, j = b.length() - 1; i >= 0 || j >= 0; i--, j--) {
+        char[] charsA = a.toCharArray();
+        char[] charsB = b.toCharArray();
+        for (int i = charsA.length - 1, j = charsB.length - 1; i >= 0 || j >= 0; i--, j--) {
             int sum = nextNum;
-            if (i >= 0) {
-                sum += (a.charAt(i) - '0');
-            } else {
-                sum += 0;
-            }
-            if (j >= 0) {
-                sum += (b.charAt(j) - '0');
-            } else {
-                sum += 0;
-            }
-            res.append(sum % 2);
+            if (i >= 0) sum += charsA[i] - '0';
+            else sum += 0;
+            if (j >= 0) sum += charsB[j] - '0';
+            else sum += 0;
+            str.append(sum % 2);
+            //如果sum为1，下一位数就不额外加1，就除2为0
+            //如果sum为2，下一位数就要加1，除2就为1
             nextNum = sum / 2;
         }
-        if (nextNum == 1) {
-            res.append(nextNum);
-        }
-        return res.reverse().toString();
+        //最后一位有可能还需要加1
+        if (nextNum == 1) str.append(nextNum);
+        return str.reverse().toString();
     }
 }
