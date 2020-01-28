@@ -47,9 +47,11 @@ class Solution {
             }
             int carry = (chars[curr] - 48) * flag;
             if (res > Integer.MAX_VALUE / 10 || (res == Integer.MAX_VALUE / 10 && carry > 7)) {
+                //超出整型最大范围，返回最大值
                 return Integer.MAX_VALUE;
             }
             if (res < Integer.MIN_VALUE / 10 || (res == Integer.MIN_VALUE / 10 && carry < -8)) {
+                //超出整型最小范围，返回最小值
                 return Integer.MIN_VALUE;
             }
             res = res * 10 + carry;
