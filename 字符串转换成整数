@@ -1,0 +1,41 @@
+class Solution {
+    public int myAtoi(String str) {
+        int res = 0;
+        int flag = 1;
+        char[] chars = str.toCharArray();
+        int curr = 0;
+        for (; curr < chars.length; curr++) {
+            if (chars[curr] == ' ') {
+                continue;
+            } else {
+                if (chars[curr] == '-') {
+                    flag = -1;
+                    curr++;
+                    break;
+                } else if (chars[curr] == '+') {
+                    curr++;
+                    break;
+                } else if (chars[curr] < '0' || chars[curr] > '9') {
+                    return 0;
+                } else {
+                    break;
+                }
+            }
+        }
+        //循环结束，start找到数字的开头
+        for (; curr < chars.length; curr++) {
+            if (chars[curr] < '0' || chars[curr] > '9') {
+                return res;
+            }
+            int carry = (chars[curr] - 48) * flag;
+            if (res > Integer.MAX_VALUE / 10 || (res == Integer.MAX_VALUE / 10 && carry > 7)) {
+                return Integer.MAX_VALUE;
+            }
+            if (res < Integer.MIN_VALUE / 10 || (res == Integer.MIN_VALUE / 10 && carry < -8)) {
+                return Integer.MIN_VALUE;
+            }
+            res = res * 10 + carry;
+        }
+        return res;
+    }
+}
