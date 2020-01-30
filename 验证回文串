@@ -14,6 +14,7 @@
 链接：https://leetcode-cn.com/problems/valid-palindrome
 */
 
+//HashSet
 class Solution {
     public boolean isPalindrome(String s) {
         Set<Character> table = new HashSet<>();
@@ -42,7 +43,7 @@ class Solution {
     }
 }
 
-
+//Character自带API
 class Solution {
     public boolean isPalindrome(String s) {
         char[] chars = s.toLowerCase().toCharArray();
