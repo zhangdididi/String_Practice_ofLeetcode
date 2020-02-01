@@ -1,0 +1,19 @@
+class Solution {
+    public int compress(char[] chars) {
+        int letter = 0, write = 0;
+        for (int read = 0; read < chars.length; read++) {
+            if (read == chars.length - 1 || chars[read] != chars[read + 1]) {
+                chars[write] = chars[letter];
+                write++;
+                if (read > letter) {
+                    for (char c : ("" + (read - letter + 1)).toCharArray()) {
+                        chars[write] = c;
+                        write++;
+                    }
+                }
+                letter = read + 1;
+            }
+        }
+        return write;
+    }
+}
