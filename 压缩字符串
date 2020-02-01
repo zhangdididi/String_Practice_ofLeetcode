@@ -13,6 +13,8 @@
 
 class Solution {
     public int compress(char[] chars) {
+        //letter记录每个字母的位置
+        //write表示重新写入的位置
         int letter = 0, write = 0;
         for (int read = 0; read < chars.length; read++) {
             if (read == chars.length - 1 || chars[read] != chars[read + 1]) {
