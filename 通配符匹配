@@ -1,0 +1,42 @@
+/*
+给定一个字符串 (s) 和一个字符模式 (p) ，实现一个支持 '?' 和 '*' 的通配符匹配。
+'?' 可以匹配任何单个字符。
+'*' 可以匹配任意字符串（包括空字符串）。
+两个字符串完全匹配才算匹配成功。
+
+说明:
+s 可能为空，且只包含从 a-z 的小写字母。
+p 可能为空，且只包含从 a-z 的小写字母，以及字符 ? 和 *。
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/wildcard-matching
+*/
+
+class Solution {
+    public boolean isMatch(String s, String p) {
+        int i = 0, j = 0;
+        int iFlag = -1, jFlag = -1;
+        int lenS = s.length(), lenP = p.length();
+        char[] charS = s.toCharArray();
+        char[] charP = p.toCharArray();
+        while (i < lenS) {
+            if (j < lenP && (charS[i] == charP[j] || charP[j] == '?')) {
+                i++;
+                j++;
+            } else if (j < lenP && charP[j] == '*') {
+                iFlag = i;
+                jFlag = j;
+                j++;
+            } else if (iFlag >= 0) {
+                i = ++iFlag;
+                j = jFlag + 1;
+            } else {
+                return false;
+            }
+        }
+        while (j < lenP && charP[j] == '*') {
+            j++;
+        }
+        return j == lenP;
+    }
+}
