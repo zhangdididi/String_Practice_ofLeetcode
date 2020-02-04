@@ -21,6 +21,8 @@ class Solution {
         char[] charP = p.toCharArray();
         while (i < lenS) {
             if (j < lenP && (charS[i] == charP[j] || charP[j] == '?')) {
+                //当两个字符串对应位置的字符相同或者p的对应字符为？
+                //则向后继续遍历两个字符串
                 i++;
                 j++;
             } else if (j < lenP && charP[j] == '*') {
