@@ -12,7 +12,6 @@ text 全部由小写英文字母组成
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 
-
 class Solution {
     public int maxNumberOfBalloons(String text) {
         String s = "balloon";
@@ -20,13 +19,16 @@ class Solution {
             return 0;
         }
         char[] chars = text.toCharArray();
+        //通过数组创建一个哈希表
         int[] hashTable = new int[26];
         for (char c : chars) {
+            //保存数组中的字符的数量
             hashTable[c - 'a']++; 
         }
         //循环结束后,hashTable中存放了字符串text每个字符的数量
         int max = hashTable[s.charAt(0) - 'a'];
         for (int i = 1; i < s.length(); i++) {
+            //查找需要的字符
             if (s.charAt(i) != 'l' && s.charAt(i) != 'o') {
                 max = hashTable[s.charAt(i) - 'a'] < max ? hashTable[s.charAt(i) - 'a'] : max;
             } else {
