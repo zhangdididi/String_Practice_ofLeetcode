@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String str = in.nextLine();
+        String ret = strOfMaxNum(str);
+        System.out.println(ret);
+    }
+    
+    private static String strOfMaxNum(String str) {
+        //如果字符串为空或者长度为0，就直接返回空字符串
+        if (str == null || str.length() == 0) {
+            return "";
+        }
+        //创建临时变量，保存遍历到的数字串的最大长度
+        int maxLength = 0;
+        //创建StringBuilder保存当前遍历到的最长的字符串
+        StringBuilder res = new StringBuilder("");
+        //创建start和end两个变量来作为下标指针，指向数字串的开头和末尾
+        int start = 0, end = 0;
+        char[] chars = str.toCharArray();
+        //循环遍历str
+        while (start < chars.length && end < chars.length) {
+            while (start < chars.length && chars[start] < '0' && chars[start] > '9') {
+                start++;
+            }
+            //循环结束，start指向第一个数字字符
+            end = start;
+            while (end < chars.length && chars[end] >= '0' && chars[end] <= '9') {
+                end++;
+            }
+            //循环结束，end指向当前数字串后面的第一个字符
+            //如果长度大于maxLength，就更新maxLength和res
+            if (end - start > maxLength) {
+                res.delete(0, maxLength);
+                res.append(str.substring(start, end));
+                maxLength = end - start;
+            }
+            //最后更新start到end位置
+            start = end + 1;
+        }
+        return res.toString();
+    }
+}
