@@ -1,0 +1,35 @@
+import java.util.Scanner;
+import java.util.HashSet;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String str1 = in.nextLine();
+        String str2 = in.nextLine();
+        String ret = strAfterDelete(str1, str2);
+        System.out.println(ret);
+    }
+    
+    private static String strAfterDelete(String str1, String str2) {
+        //如果str1为空字符串，就返回空字符串
+        if (str1 == null || str1.equals("")) return "";
+        //如果str2位空字符串，就返回str1
+        if (str2 == null || str2.equals("")) return str1;
+        //创建HashSet存储str2中的元素字符
+        HashSet<Character> set = new HashSet<>();
+        for (char c : str2.toCharArray()) {
+            set.add(c);
+        }
+        //再创建StringBuilder来保存str1删除字符后的字符串
+        StringBuilder res = new StringBuilder(str1);
+        //然后按顺序遍历StringBuilder删除HashSet中存在的元素
+        for (int i = 0; i < res.length(); i++) {
+            if (set.contains(res.charAt(i))) {
+                res.deleteCharAt(i);
+                //如果删除之后，字符串长度会缩小，后面的字符会填补到被删除元素的位置上
+                i--;
+            }
+        }
+        return res.toString();
+    }
+}
